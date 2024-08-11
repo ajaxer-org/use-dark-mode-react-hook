@@ -23,7 +23,7 @@ jobs:
         run: npm install
 
       - name: Build the package
-        run: npx tsc
+        run: npm run build
 
       - name: Publish to npm --dry-run
         run: npm publish --dry-run
