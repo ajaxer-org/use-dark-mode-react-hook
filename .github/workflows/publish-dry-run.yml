@@ -25,5 +25,5 @@ jobs:
       - name: Build the package
         run: npx tsc
 
-      - name: Publish to npm
+      - name: Publish to npm --dry-run
         run: npm publish --dry-run
