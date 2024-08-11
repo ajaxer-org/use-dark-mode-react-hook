@@ -29,3 +29,10 @@ jobs:
         run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Upload npm logs
+        if: failure() # Only upload logs if the previous step fails
+        uses: actions/upload-artifact@v3
+        with:
+          name: npm-logs
+          path: /home/runner/.npm/_logs/
