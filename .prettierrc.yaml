@@ -1,0 +1,13 @@
+# REFERENCE https://prettier.io/docs/en/options
+
+# .prettierrc or .prettierrc.yaml
+
+# trailingComma: 'es5'
+tabWidth: 2
+useTabs: false
+semi: false
+singleQuote: true
+bracketSpacing: true
+bracketSameLine: false
+printWidth: 100
+singleAttributePerLine: false
