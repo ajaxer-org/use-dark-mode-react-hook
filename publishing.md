@@ -19,8 +19,78 @@ Before you can publish your package, you need to create an npm token:
 - Paste the npm token into the value field and save.
 
 
+## 3. Create & Initialize your project
 
-## 3. Set Up the GitHub Actions Workflow
+### 3.1 Create a New Project Directory
+``` bash
+mkdir my-project
+cd my-project
+```
+
+### 3.2 Initialize the Project
+This will create a `package.json` file with default settings.
+``` bash
+npm init -y
+```
+
+### 3.3  Set Up TypeScript (Optional)
+``` bash
+npm install typescript --save-dev
+npx tsc --init
+```
+
+#### 3.3.1 Add the below script to your `package.json`
+``` bash
+...
+
+"scripts": {
+    "build": "tsc"
+  },
+
+...
+```
+
+
+#### 3.3.2 Update the `tsconfig.json` File
+Open `tsconfig.json` and make sure it's configured to include your src directory. Here’s an example configuration:
+
+```json
+{
+  "compilerOptions": {
+    "outDir": "./dist",         // Redirect output structure to the 'dist' directory
+    "module": "commonjs",       // Specify module code generation
+    "target": "es5",            // Specify ECMAScript target version
+    "jsx": "react",             // Support JSX in .tsx files
+    "strict": true,             // Enable all strict type-checking options
+    "esModuleInterop": true,    // Enables emit interoperability between CommonJS and ES Modules
+    "skipLibCheck": true        // Skip type checking of all declaration files
+  },
+  "include": ["src/**/*"],      // Include all files in 'src' directory
+  "exclude": ["node_modules", "dist"] // Exclude 'node_modules' and 'dist'
+}
+```
+
+### 3.4 Add your source code
+Create a src directory and add source
+``` bash
+mkdir src
+```
+
+### 3.5 Compile TypeScript to JavaScript (if using TypeScript)
+``` bash
+npx tsc
+```
+
+### 3.6 Create an Entry Point
+Ensure your `package.json` points to the correct entry file
+``` bash
+"main": "dist/index.js",
+"types": "dist/index.d.ts",
+```
+**If you're not using TypeScript, point "main" to your JavaScript file directly.**
+
+
+## 4. Set Up the GitHub Actions Workflow
 - Create a GitHub Actions workflow file in your repository to automate the build and publish process.
 - In your repository, create a .github/workflows directory if it doesn’t already exist.
 - Inside the workflows directory, create a file named publish.yml.
